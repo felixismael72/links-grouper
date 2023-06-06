@@ -19,3 +19,7 @@ func (builder *CategoryBuilder) WithName(name string) *CategoryBuilder {
 func (builder *CategoryBuilder) Build() *Category {
 	return builder.category
 }
+
+func NewCategoryBuilder() *CategoryBuilder {
+	return &CategoryBuilder{category: &Category{}}
+}

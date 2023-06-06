@@ -3,7 +3,7 @@ create extension if not exists "uuid-ossp";
 create table if not exists category 
 (
   id uuid not null
-    constraint df_category_id default uuid_generate_v4(),
+    constraint df_category_id default uuid_generate_v4()
     constraint pk_category_id primary key,
   name varchar(100) not null
 );
@@ -11,7 +11,7 @@ create table if not exists category
 create table if not exists link 
 (
   id uuid not null 
-    constraint df_link_id default uuid_generate_v4(),
+    constraint df_link_id default uuid_generate_v4()
     constraint pk_link_id primary key,
   content text unique not null,
   registered_at timestamp not null default now()

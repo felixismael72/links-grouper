@@ -1,7 +1,17 @@
 package routes
 
-import "github.com/labstack/echo/v4"
+import (
+	"grouper/src/app/api/endpoints/dicontainer"
+
+	"github.com/labstack/echo/v4"
+)
 
 func loadLinkRoutes(apiGroup *echo.Group) {
-	_ = apiGroup.Group("/link")
+	linkHandlers := dicontainer.GetLinkHandlers()
+
+	linkGroup := apiGroup.Group("/link")
+
+	linkGroup.POST("/new", linkHandlers.PostLink)
+	linkGroup.GET("", linkHandlers.GetLink)
+	linkGroup.PUT("/:linkID/edit", linkHandlers.PutLink)
 }

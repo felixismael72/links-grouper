@@ -6,6 +6,7 @@ import (
 	"path/filepath"
 
 	"grouper/src/app/api/config"
+	"grouper/src/app/api/endpoints/routes"
 	"grouper/src/app/api/flags"
 	"grouper/src/infra/postgres"
 
@@ -34,6 +35,7 @@ func setupPG(config config.PG) {
 
 func setupServer(config config.Server) {
 	router := echo.New()
+	routes.Load(router)
 	address := fmt.Sprintf("%s:%d", config.Host, config.Port)
 	router.Logger.Fatal(router.Start(address))
 }

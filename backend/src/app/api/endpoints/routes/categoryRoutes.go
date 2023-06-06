@@ -1,7 +1,17 @@
 package routes
 
-import "github.com/labstack/echo/v4"
+import (
+	"grouper/src/app/api/endpoints/dicontainer"
+
+	"github.com/labstack/echo/v4"
+)
 
 func loadCategoryRoutes(apiGroup *echo.Group) {
-	_ = apiGroup.Group("/category")
+	categoryHandlers := dicontainer.GetCategoryHandlers()
+
+	categoryGroup := apiGroup.Group("/category")
+
+	categoryGroup.POST("/new", categoryHandlers.PostCategory)
+	categoryGroup.GET("", categoryHandlers.GetCategory)
+	categoryGroup.PUT("/:categoryID/edit", categoryHandlers.PutCategory)
 }

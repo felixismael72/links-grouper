@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  app_db:
+    build: 
+      dockerfile: ./dockerfiles/Dockerfile.appdb
+      context: .
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345678
+      - POSTGRES_DB=app_db
+    container_name: links_grouper_db
+    ports:
+      - "5432:5432"
+    networks:
+      - links_grouper
+
+  backend: 
+    build: 
+      dockerfile: ./dockerfiles/Dockerfile.backend
+      context: .
+    container_name: links_grouper_backend
+    ports:
+      - "8000:8000"
+    networks:
+      - links_grouper
+    depends_on:
+      - app_db
+
+networks:
+  links_grouper:
+    driver: bridge

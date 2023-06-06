@@ -16,11 +16,15 @@ func (builder *LinkBuilder) WithContent(content string) *LinkBuilder {
 	return builder
 }
 
-func (builder *LinkBuilder) WithCategories(categories []Category) *LinkBuilder {
-	builder.link.categories = categories
+func (builder *LinkBuilder) WithCategory(category Category) *LinkBuilder {
+	builder.link.categories = append(builder.link.categories, category)
 	return builder
 }
 
 func (builder *LinkBuilder) Build() *Link {
 	return builder.link
+}
+
+func NewLinkBuilder() *LinkBuilder {
+	return &LinkBuilder{link: &Link{}}
 }

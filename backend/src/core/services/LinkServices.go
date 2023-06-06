@@ -14,21 +14,30 @@ type LinkServices struct {
 }
 
 func (service LinkServices) RegisterLink(link domain.Link) (*uuid.UUID, error) {
-	// todo: implement me
+	linkID, err := service.linkRepository.RegisterLink(link)
+	if err != nil {
+		return nil, err
+	}
 
-	panic("implement me")
+	return linkID, nil
 }
 
 func (service LinkServices) ListLink() ([]domain.Link, error) {
-	// todo: implement me
+	links, err := service.linkRepository.ListLink()
+	if err != nil {
+		return nil, err
+	}
 
-	panic("implement me")
+	return links, nil
 }
 
 func (service LinkServices) EditLink(link domain.Link) error {
-	// todo: implement me
+	err := service.linkRepository.EditLink(link)
+	if err != nil {
+		return err
+	}
 
-	panic("implement me")
+	return nil
 }
 
 func NewLinkServices(repo repository.LinkLoader) *LinkServices {

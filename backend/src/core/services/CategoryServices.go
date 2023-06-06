@@ -14,21 +14,30 @@ type CategoryServices struct {
 }
 
 func (service CategoryServices) CreateCategory(category domain.Category) (*uuid.UUID, error) {
-	// todo: implement me
+	categoryID, err := service.categoryRepository.CreateCategory(category)
+	if err != nil {
+		return nil, err
+	}
 
-	panic("implement me")
+	return categoryID, nil
 }
 
 func (service CategoryServices) ListCategory() ([]domain.Category, error) {
-	// todo: implement me
+	categories, err := service.categoryRepository.ListCategory()
+	if err != nil {
+		return nil, err
+	}
 
-	panic("implement me")
+	return categories, nil
 }
 
 func (service CategoryServices) EditCategory(category domain.Category) error {
-	// todo: implement me
+	err := service.categoryRepository.EditCategory(category)
+	if err != nil {
+		return err
+	}
 
-	panic("implement me")
+	return nil
 }
 
 func NewCategoryServices(repo repository.CategoryLoader) *CategoryServices {
