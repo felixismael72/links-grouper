@@ -1,8 +1,34 @@
 version: '3'
 
 services:
+  auth_db:
+    build:
+      dockerfile: ./dockerfiles/Dockerfile.authdb
+      context: .
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345678
+      - POSTGRES_DB=auth_db
+    container_name: links_grouper_auth_db
+    ports:
+      - "5433:5432"
+    networks:
+      - links_grouper
+
+  authentication:
+    build:
+      dockerfile: ./dockerfiles/Dockerfile.authentication
+      context: .
+    container_name: links_grouper_authentication
+    ports:
+      - "8001:8001"
+    networks:
+      - links_grouper
+    depends_on:
+      - auth_db
+
   app_db:
-    build: 
+    build:
       dockerfile: ./dockerfiles/Dockerfile.appdb
       context: .
     environment:
@@ -15,8 +41,8 @@ services:
     networks:
       - links_grouper
 
-  backend: 
-    build: 
+  backend:
+    build:
       dockerfile: ./dockerfiles/Dockerfile.backend
       context: .
     container_name: links_grouper_backend

@@ -1,0 +1,5 @@
+FROM postgres:15.2
+
+WORKDIR /database
+
+COPY ./authentication/tools/sql/* /docker-entrypoint-initdb.d/
