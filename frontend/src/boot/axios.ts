@@ -8,9 +8,9 @@ declare module '@vue/runtime-core' {
   }
 }
 
-const api = axios.create({ baseURL: 'localhost:8000/api/' })
-const auth = axios.create({ baseURL: 'localhost:8001/api/auth/' })
-
+const api = axios.create({ baseURL: 'http://localhost:8000/api/' })
+const auth = axios.create({ baseURL: 'http://localhost:8001/api/auth/' })
+            
 export default boot(({ router, store, app }) => {
   app.config.globalProperties.$axios = axios
 

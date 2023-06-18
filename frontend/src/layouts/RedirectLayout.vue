@@ -3,8 +3,6 @@
     <q-header elevated>
       <q-toolbar>
         <q-toolbar-title> Links Grouper </q-toolbar-title>
-        <div><q-btn color="white" text-color="secondary" class="text-capitalize" icon="home" to="/" label="Início" />
-        </div>
       </q-toolbar>
     </q-header>
 

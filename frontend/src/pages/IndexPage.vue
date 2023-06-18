@@ -1,49 +1,14 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
-  </q-page>
+  <section>
+    <div class="full-height full-width flex flex-center text-center"
+      style="!important;z-index:0;height: 100vh !important;">
+      <div class="">
+        <div class="text-h6 text-black-5">Bem Vindo ao Links Grouper</div>
+        <div class="text-h2 text-black q-py-sm q-my-md"
+          style="border-top:3px solid #1595de;border-bottom: 3px solid #1595de;">Gerencie seus Links de maneira fácil <br>
+          e os organize do seu jeito!
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
-
-<script lang="ts">
-import { Todo, Meta } from 'components/models';
-import ExampleComponent from 'components/ExampleComponent.vue';
-import { defineComponent, ref } from 'vue';
-
-export default defineComponent({
-  name: 'IndexPage',
-  components: { ExampleComponent },
-  setup() {
-    const todos = ref<Todo[]>([
-      {
-        id: 1,
-        content: 'ct1'
-      },
-      {
-        id: 2,
-        content: 'ct2'
-      },
-      {
-        id: 3,
-        content: 'ct3'
-      },
-      {
-        id: 4,
-        content: 'ct4'
-      },
-      {
-        id: 5,
-        content: 'ct5'
-      }
-    ]);
-    const meta = ref<Meta>({
-      totalCount: 1200
-    });
-    return { todos, meta };
-  }
-});
-</script>

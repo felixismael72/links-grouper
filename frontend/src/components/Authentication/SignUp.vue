@@ -1,7 +1,11 @@
 <template>
   <div class="q-pa-md" style="max-width: 400px">
     <q-form @submit="save()" class="q-gutter-md">
-      <q-input filled v-model="name" label="Nome" lazy-rules :rules="[
+      <q-input filled v-model="username" label="Username" lazy-rules :rules="[
+        (val) => (val && val.length > 0) || 'Este campo é obrigatório',
+      ]" />
+      
+      <q-input filled v-model="full_name" label="Full Name" lazy-rules :rules="[
         (val) => (val && val.length > 0) || 'Este campo é obrigatório',
       ]" />
 
@@ -37,11 +41,13 @@ export default defineComponent({
     const password = ref('');
     const isPwd = ref(true);
     const email = ref('');
-    const name = ref('');
+    const username = ref('');
+    const full_name = ref('')
 
     const save = () => {
-      $store.dispatch('user/signUp', {
-        name: name.value,
+      $store.dispatch('user/signUpUser', {
+        username: username.value,
+        full_name: full_name.value,
         email: email.value,
         password: password.value,
       });
@@ -53,7 +59,8 @@ export default defineComponent({
       password,
       isPwd,
       email,
-      name,
+      username,
+      full_name,
       save,
     };
   },

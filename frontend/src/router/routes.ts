@@ -2,16 +2,6 @@ import { RouteRecordRaw } from 'vue-router';
 
 const routes: RouteRecordRaw[] = [
   {
-    path: '/',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [
-      {
-        path: '',
-        component: () => import('pages/IndexPage.vue')
-      }
-    ],
-  },
-  {
     path: '/auth',
     component: () => import('layouts/RedirectLayout.vue'),
     children: [
@@ -22,6 +12,27 @@ const routes: RouteRecordRaw[] = [
       {
         path: '/auth/signUp',
         component: () => import('pages/SignUpPage.vue')
+      },
+    ],
+  },
+  {
+    path: '/',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      {
+        path: '/',
+        beforeEnter: (to, from, next) => {
+          if (localStorage.getItem('token')) {
+            next();
+          } else {
+            next('/auth/signIn');
+          }
+        },
+        component: () => import('pages/IndexPage.vue')
+      },
+      {
+        path: '/groups',
+        component: () => import('pages/GroupsLinks.vue')
       },
     ],
   },

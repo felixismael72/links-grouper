@@ -52,6 +52,20 @@ services:
       - links_grouper
     depends_on:
       - app_db
+  
+  frontend:
+    build:
+      dockerfile: ./dockerfiles/Dockerfile.front
+      context: .
+    container_name: links_grouper_frontend
+    ports:
+      - "8080:8080"
+    command: /bin/sh -c "yarn && quasar dev"
+    networks:
+      - links_grouper
+    depends_on:
+      - authentication
+      - backend
 
 networks:
   links_grouper:
